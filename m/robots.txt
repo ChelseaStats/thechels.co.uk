@@ -1,0 +1,14 @@
+# robots.txt generated at http://www.thecellarroom.net
+
+
+User-agent: URLmetrics
+Disallow: /
+
+User-agent: WebsiteRecord
+Disallow: /
+
+User-agent: WebInspector
+Disallow: /
+
+User-agent: web3389
+Disallow: /
