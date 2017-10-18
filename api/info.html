@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>API</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="ChelseaStats - free data api">
+<meta name="author" content="ChelseaStats">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, width=320.1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+<meta name="apple-mobile-web-app-title" content="Api">   
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-startup-image" href="http://m.thechels.co.uk/img/default.png" />
+<link rel="apple-touch-startup-image" href="http://m.thechels.co.uk/img/default2x.png" sizes="640x920">
+<link rel="apple-touch-startup-image" href="http://m.thechels.co.uk/img/default4x.png" sizes="640x1096">
+<link rel="apple-touch-icon" href="http://m.thechels.co.uk/img/apple-touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="72x72" href="http://m.thechels.co.uk/img/apple-touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="114x114" href="http://m.thechels.co.uk/img/apple-touch-icon-iphone4.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://m.thechels.co.uk/img/apple-touch-icon-ipad3.png" />   
+<meta name="msapplication-TileColor" content="#ffffff"/>
+<meta name="msapplication-TileImage" content="http://m.thechels.co.uk/img/favicon-msapplication-tileimage.png"/>
+<meta name="format-detection" content="telephone=no"/> 
+<meta name="format-detection" content="address=no"/>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-61731032-3', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+<style>
+footer { margin-top:40px; border-top:1px solid grey; font-size:0.875em; }
+h1,h2,h3,h4,h5,h6 {margin-top:35px; margin-bottom:15px; padding-bottom:5px; border-bottom:1px solid grey;}
+</style>
+</head>
+<body>
+<div class="container">
+<h3>api.thechels.uk</h3>
+
+<p>Api V4.0.0 &copy; 2015 ChelseaStats</p>
+
+<h4>EndPoint</h4>
+<p>All services are accessed from the following HTTP endpoint</p>
+
+<pre>https://api.thechels.uk</pre>
+
+<h4>Response</h4>
+
+<p>JSON(P) only. CORS is enabled.</p>
+
+<p>Each response comes with an appropriate HTTP status code (except for JSONP requests). These include `200` for success, `400` for bad request, `404` for not found and `500` for server error. The HTTP status code is also included in the response body along with a status message.</p>
+
+<p>A 200 response and you'll also get some data</p>
+
+<h4>Authentication</h4>
+
+<p>This api does not require any authentication</p>
+
+<h4>Error Handling</h4>
+
+<p>To check for errors, simply examine the HTTP response code. `200` response indicates success while any other code will provide important information about why an error occured.</p>
+
+<p>Alternatively you can examine HTTP Status code in the `status` property in the result body.</p>
+
+<p>All JSONP requests return `200` responses because of the silent error problem, so you need use the latter method to check for errors.</p>
+
+<h4>Available Data Fields</h4>
+
+<table class="table table-hover"><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody>
+
+<tr id="teams"><td>Team</td><td><strong>Team.</strong> All current teams Chelsea have faced.<p>Teams are recorded as their full name with underscores replacing spaced for example `MANCHESTER_CITY`</p></td></tr>
+
+<tr id="location"><td>Location</td><td><strong>Location.</strong> Shows the location of the match, Home (H), Away (A) or Neutral (N).</td></tr>
+
+<tr id="result"><td>Result</td><td><strong>Result.</strong> Shows the outcome of the match, Win (W), Draw (D), Loss (L). <br/> <p>In cup competitions where games are level at the end of Extra Time and are settled on penalties are recorded as draws.</p></td></tr>
+
+
+<tr id="limit"><td>Limit</td><td><strong>Limit.</strong> restricts the data return up to <code>:n</code> number of games, if they exist. Data is in descending order, i.e. <code>/6</code> at the end of your api call would return the last `6` results.</td></tr>
+</tbody>
+</table>
+
+<h4>Methods</h4>
+Available methods listed below.
+
+<h5>Team Lookup</h5>
+
+<p>Returns all teams available</p>
+<pre>GET/ https://api.thechels.uk/team/</pre>
+
+
+<p>Look up a team. Returns all available data if found</p>
+<pre>GET/ https://api.thechels.uk/team/:team</pre>
+
+<p>Returns `:n` most recent results against `:team`</p>
+<pre>GET/ https://api.thechels.uk/team/:team/:n</pre>
+
+<h5>Location Lookup</h5>
+<p>returns all locations available</p>
+<pre>GET/ https://api.thechels.uk/location/</pre>
+
+<p>Look up a location. Returns all available data if found</p>
+<pre>GET/ https://api.thechels.uk/location/:location</pre>
+
+<p>returns `:n` most recent results at `:location`</p>
+<pre>GET/ https://api.thechels.uk/location/:location/:n</pre>
+
+<h5>Result Lookup</h5>
+<p>returns all results availble</p>
+<pre>GET/ https://api.thechels.uk/result/</pre>
+
+<p>Look up a result. Returns all available data if found</p>
+<pre>GET/ https://api.thechels.uk/result/:result</pre>
+
+<p>returns `:n` most recent results `:result`</p>
+<pre>GET/ https://api.thechels.uk/result/:result/:n</pre>
+
+
+<h5>Top Flight Results Lookup</h5>
+
+<p>Look up a team's results. Returns all available data if found</p>
+<pre>GET/ https://api.thechels.uk/all/:team</pre>
+
+<p>returns `:n` most recent results of team `:team`</p>
+<pre>GET/ https://api.thechels.uk/all/:team/:n</pre>
+
+<footer>
+<p>&copy; ChelseaStats 2016</p>
+</footer>
+</div>
+</body>
+</html>
